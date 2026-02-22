@@ -1,6 +1,4 @@
-
-
-# Time Sepekar (কথা বলা ঘড়ি )
+# Time Sepekar (কথা বলা ঘড়ি)
 
 
 1. Install dependencies:
