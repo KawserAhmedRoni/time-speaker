@@ -158,7 +158,7 @@ export default function App() {
       </div>
 
       <footer className="pb-4 text-[#5A5A40]/40 text-[10px] uppercase tracking-[0.3em] font-sans font-medium">
-        সময় কথক • ২০২৬
+        &copy; ২০২৬ Kawser Ahmed Roni.
       </footer>
     </div>
   );
