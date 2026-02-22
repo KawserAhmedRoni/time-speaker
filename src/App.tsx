@@ -99,62 +99,65 @@ export default function App() {
   }, [time, isSpeaking]);
 
   return (
-    <div className="min-h-screen bg-[#f5f5f0] flex flex-col items-center justify-center p-6 font-serif">
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="max-w-md w-full bg-white rounded-[32px] shadow-xl p-10 text-center border border-[#5A5A40]/10"
-      >
-        <div className="flex justify-center mb-6">
-          <div className="p-4 bg-[#5A5A40]/5 rounded-full">
-            <Clock className="w-10 h-10 text-[#5A5A40]" />
-          </div>
-        </div>
-
-        <h1 className="text-[#5A5A40] text-sm uppercase tracking-[0.2em] font-sans font-semibold mb-2">
-          বর্তমান সময়
-        </h1>
-
+    <div className="fixed inset-0 bg-[#f5f5f0] flex flex-col items-center justify-between p-6 font-serif overflow-hidden">
+      <div className="flex-1 flex flex-col items-center justify-center w-full max-w-md">
         <motion.div 
-          key={time.getMinutes()}
-          initial={{ scale: 0.95, opacity: 0.8 }}
-          animate={{ scale: 1, opacity: 1 }}
-          className="text-7xl font-bold text-[#1a1a1a] mb-4 tracking-tight"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="w-full bg-white rounded-[40px] shadow-2xl p-8 sm:p-10 text-center border border-[#5A5A40]/10 flex flex-col items-center"
         >
-          {formatTimeBengali(time)}
-        </motion.div>
+          <div className="flex justify-center mb-6">
+            <div className="p-4 bg-[#5A5A40]/5 rounded-full">
+              <Clock className="w-10 h-10 text-[#5A5A40]" />
+            </div>
+          </div>
 
-        <p className="text-[#5A5A40]/70 text-lg mb-10 italic">
-          {formatDateBengali(time)}
-        </p>
+          <h1 className="text-[#5A5A40] text-xs sm:text-sm uppercase tracking-[0.25em] font-sans font-bold mb-4">
+            বর্তমান সময়
+          </h1>
 
-        <div className="space-y-4">
-          {!hasBnVoice && (
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-amber-600 text-sm mb-4 bg-amber-50 p-3 rounded-xl border border-amber-100"
-            >
-              আপনার ব্রাউজারে বাংলা ভয়েস পাওয়া যায়নি। সময় শুনতে সমস্যা হতে পারে।
-            </motion.p>
-          )}
-          <button
-            onClick={speakTime}
-            disabled={isSpeaking}
-            className={`
-              w-full py-5 px-8 rounded-full flex items-center justify-center gap-3 text-xl font-medium transition-all duration-300
-              ${isSpeaking 
-                ? 'bg-[#5A5A40]/20 text-[#5A5A40] cursor-not-allowed' 
-                : 'bg-[#5A5A40] text-white hover:bg-[#4a4a35] hover:shadow-lg active:scale-95'}
-            `}
+          <motion.div 
+            key={time.getMinutes()}
+            initial={{ scale: 0.95, opacity: 0.8 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="text-6xl sm:text-7xl font-bold text-[#1a1a1a] mb-4 tracking-tighter leading-none"
           >
-            <Volume2 className={`w-6 h-6 ${isSpeaking ? 'animate-pulse' : ''}`} />
-            <span>সময় শুনুন</span>
-          </button>
-        </div>
-      </motion.div>
+            {formatTimeBengali(time)}
+          </motion.div>
 
-      <footer className="mt-12 text-[#5A5A40]/40 text-xs uppercase tracking-widest font-sans">
+          <p className="text-[#5A5A40]/70 text-base sm:text-lg mb-10 italic leading-relaxed">
+            {formatDateBengali(time)}
+          </p>
+
+          <div className="w-full space-y-4">
+            {!hasBnVoice && (
+              <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-amber-700 text-xs mb-4 bg-amber-50 p-3 rounded-2xl border border-amber-100 leading-snug"
+              >
+                আপনার ফোনে বাংলা ভয়েস পাওয়া যায়নি। সময় শুনতে সমস্যা হতে পারে।
+              </motion.p>
+            )}
+            <button
+              onClick={speakTime}
+              disabled={isSpeaking}
+              className={`
+                w-full py-5 px-8 rounded-full flex items-center justify-center gap-3 text-xl font-bold transition-all duration-300
+                active:scale-95 touch-manipulation
+                ${isSpeaking 
+                  ? 'bg-[#5A5A40]/20 text-[#5A5A40] cursor-not-allowed' 
+                  : 'bg-[#5A5A40] text-white shadow-lg shadow-[#5A5A40]/20'}
+              `}
+            >
+              <Volume2 className={`w-7 h-7 ${isSpeaking ? 'animate-pulse' : ''}`} />
+              <span>সময় শুনুন</span>
+            </button>
+          </div>
+        </motion.div>
+      </div>
+
+      <footer className="pb-4 text-[#5A5A40]/40 text-[10px] uppercase tracking-[0.3em] font-sans font-medium">
         সময় কথক • ২০২৬
       </footer>
     </div>
